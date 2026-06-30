@@ -1,0 +1,86 @@
+// lib/widgets/media_download_button.dart
+// Exemple d'utilisation du DownloadHelper dans un widget
+
+import 'package:flutter/material.dart';
+import '../helpers/download_helper.dart';
+
+class MediaDownloadButton extends StatefulWidget {
+  final String fileUrl; // URL complète du fichier ex: "http://192.168.1.10:5000/uploads/media-123.mp4"
+
+  const MediaDownloadButton({super.key, required this.fileUrl});
+
+  @override
+  State<MediaDownloadButton> createState() => _MediaDownloadButtonState();
+}
+
+class _MediaDownloadButtonState extends State<MediaDownloadButton> {
+  double? _progress; // null = pas en cours, 0.0-1.0 = en cours
+
+  Future<void> _handleDownload() async {
+    final filename = DownloadHelper.filenameFromUrl(widget.fileUrl);
+
+    setState(() => _progress = 0.0);
+
+    await DownloadHelper.downloadFile(
+      context: context,
+      filename: filename,
+      onProgress: (p) {
+        setState(() => _progress = p);
+      },
+      openAfter: false,
+    );
+
+    setState(() => _progress = null);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Barre de progression (visible seulement pendant le téléchargement)
+        if (_progress != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            child: LinearProgressIndicator(value: _progress),
+          ),
+
+        // Bouton télécharger
+        ElevatedButton.icon(
+          onPressed: _progress != null ? null : _handleDownload,
+          icon: _progress != null
+              ? const SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
+              : const Icon(Icons.download),
+          label: Text(_progress != null
+              ? '${(_progress! * 100).toStringAsFixed(0)}%'
+              : 'Télécharger'),
+        ),
+      ],
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// EXEMPLE D'USAGE DANS UN MESSAGE OU POST :
+// ─────────────────────────────────────────────────────────────
+//
+// MediaDownloadButton(
+//   fileUrl: 'http://192.168.1.10:5000/uploads/media-1717000000000-123456789.mp4',
+// )
+//
+// OU directement sans widget :
+//
+// ElevatedButton(
+//   onPressed: () {
+//     DownloadHelper.downloadFile(
+//       context: context,
+//       filename: 'media-1717000000000-123456789.jpg',
+//       openAfter: true,
+//     );
+//   },
+//   child: const Text('Télécharger'),
+// )

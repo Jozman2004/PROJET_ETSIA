@@ -1,0 +1,75 @@
+name: yansnet
+description: Réseau social UCAC-ICAM Yansoki
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Galerie d'images responsive
+  photo_view: ^0.14.0
+
+  # Lecteur vidéo
+  video_player: ^2.8.0
+
+  # Accès au système de fichiers
+  path_provider: ^2.1.0
+
+  # HTTP & API
+  dio: ^5.4.3
+
+  # Stockage sécurisé du token JWT
+  flutter_secure_storage: ^9.0.0
+
+  # Gestion d'état
+  provider: ^6.1.2
+
+  # Partage
+  share_plus: ^7.0.0
+
+  # Socket.io temps réel (messagerie)
+  socket_io_client: ^2.0.3+1
+
+  # Upload de fichiers / Sélection image et vidéo
+  image_picker: ^1.1.2
+
+  # Dates relatives ("il y a 2h")
+  timeago: ^3.6.1
+
+  # Utilitaires pour les fichiers (XFile)
+  cross_file: ^0.3.5+2
+
+  # Types MIME pour l'upload multipart
+  http_parser: ^4.0.0
+
+  # Sélection de documents (PDF, Word, Excel, etc.)
+  file_picker: ^8.1.2
+
+  # Ouverture de fichiers et URLs
+  url_launcher: ^6.2.5
+
+  # Icônes supplémentaires
+  cupertino_icons: ^1.0.6
+
+  # ── AJOUTS POUR LE TÉLÉCHARGEMENT ──────────────────────────
+
+  # Permissions stockage Android
+  permission_handler: ^11.3.0
+
+  # Ouverture de fichiers téléchargés
+  open_filex: ^4.3.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/

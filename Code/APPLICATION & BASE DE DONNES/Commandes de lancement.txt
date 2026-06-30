@@ -1,0 +1,2 @@
+Pour lancer le front, tu entres dans le dossier frontend et tu exécutes flutter run -d web-server
+Pour lancer le back, tu entres dans le dossier du backend et tu exécutes npm start

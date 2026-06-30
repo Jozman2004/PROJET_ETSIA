@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(flutter doctor -v 2>&1)",
+      "Bash(grep -r \"CupertinoPageTransitionsBuilder\" \"C:/tools/flutter/packages/flutter/lib/src/material/\" 2>/dev/null | head -5)"
+    ]
+  }
+}

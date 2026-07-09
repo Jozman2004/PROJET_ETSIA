@@ -58,6 +58,31 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: admin_users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.admin_users (
+    id uuid DEFAULT public.uuid_generate_v4() NOT NULL,
+    email character varying(255) NOT NULL,
+    password_hash character varying(255) NOT NULL,
+    full_name character varying(255) NOT NULL,
+    phone character varying(50),
+    service character varying(100),
+    admin_role character varying(50) DEFAULT 'moderator'::character varying NOT NULL,
+    is_active boolean DEFAULT true NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+ALTER TABLE public.admin_users OWNER TO postgres;
+
+ALTER TABLE ONLY public.admin_users
+    ADD CONSTRAINT admin_users_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.admin_users
+    ADD CONSTRAINT admin_users_email_key UNIQUE (email);
+
+--
 -- TOC entry 232 (class 1259 OID 16681)
 -- Name: comment_likes; Type: TABLE; Schema: public; Owner: postgres
 --

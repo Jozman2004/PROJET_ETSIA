@@ -6,8 +6,6 @@
 *.onnx
 *.h5
 
-# Dossiers de données modèles
-Code/app/data_models/
 
 # Secrets & credentials — NE JAMAIS committer
 serviceAccountKey.json

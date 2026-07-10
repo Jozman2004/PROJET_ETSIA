@@ -1,0 +1,97 @@
+name: yansnet
+description: Une application sociale pour l'UCAC-ICAM
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  video_compress: ^3.1.2 
+
+  # Deep links
+  app_links: ^6.3.0
+
+  # Firebase
+  firebase_core: ^3.0.0
+  firebase_messaging: ^15.0.2
+
+  # Notifications locales
+  flutter_local_notifications: ^22.0.1
+
+  # Galerie d'images
+  photo_view: ^0.14.0
+
+  # Lecteur vidéo
+  video_player: ^2.8.0
+
+  # Accès au système de fichiers
+  path_provider: ^2.0.0
+
+  # Téléchargement HTTP
+  http: ^1.0.0
+
+  # Miniature vidéo
+  video_thumbnail: ^0.5.0
+
+  # HTTP & API
+  dio: ^5.4.3
+
+  # Stockage sécurisé du token JWT
+  flutter_secure_storage: ^9.0.0
+
+  # Gestion d'état
+  provider: ^6.1.2
+
+  # Partage
+  share_plus: ^7.0.0
+
+  # Socket.io temps réel
+  socket_io_client: ^2.0.3+1
+
+  # Upload de fichiers
+  image_picker: ^1.1.2
+
+  # Dates relatives
+  timeago: ^3.6.1
+
+  # Utilitaires pour les fichiers (XFile)
+  cross_file: ^0.3.5+2
+
+  # Types MIME
+  http_parser: ^4.0.0
+
+  # Sélection de documents
+  file_picker: ^8.1.2
+
+  # Ouverture de fichiers et URLs
+  url_launcher: ^6.2.5
+
+  # Icônes supplémentaires
+  cupertino_icons: ^1.0.6
+
+  # Téléchargement (stockage / ouverture)
+  permission_handler: ^11.3.0
+  open_filex: ^4.3.4
+
+  # ⚠️ Ajoutés pour corriger les erreurs précédentes
+  shared_preferences: ^2.2.0
+  scrollable_positioned_list: ^0.3.8
+
+  # ✅ Nécessaire pour manipuler le DOM (téléchargements sur Web)
+  universal_html: ^2.2.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+# Configuration des assets (si nécessaire)
+flutter:
+  uses-material-design: true
+  # assets:
+  #   - assets/images/
+  #   - assets/icons/

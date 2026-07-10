@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "825970158656",
+    "project_id": "yansnet-adafe",
+    "storage_bucket": "yansnet-adafe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825970158656:android:d0c59ab2fe525acc8483a5",
+        "android_client_info": {
+          "package_name": "com.yansnet.ucac_icam_frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_zLa7Sx12RHWXs5ct5EwI_slGzSiTlaQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

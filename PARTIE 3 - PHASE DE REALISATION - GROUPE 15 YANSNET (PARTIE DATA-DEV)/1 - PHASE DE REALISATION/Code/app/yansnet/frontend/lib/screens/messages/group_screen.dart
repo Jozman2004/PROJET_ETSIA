@@ -2124,7 +2124,7 @@ class _GroupScreenState extends State<GroupScreen> {
                   controller: _ctrl,
                   maxLines: null,
                   decoration: InputDecoration(
-                    hintText: _replyingTo != null ?: 'Écrire un message... (Utilisez @ pour mentionner)',
+                    hintText: 'Ecrire un message',
                     filled: true,
                     fillColor: Colors.grey[100],
                     border: OutlineInputBorder(

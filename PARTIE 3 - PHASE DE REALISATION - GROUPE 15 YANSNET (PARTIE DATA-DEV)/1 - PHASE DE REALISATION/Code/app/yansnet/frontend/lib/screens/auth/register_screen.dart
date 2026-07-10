@@ -32,6 +32,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   late List<String> _residences;
 
+  bool _isEmailAllowed(String email) {
+    final trimmed = email.trim().toLowerCase();
+    return trimmed.endsWith('ucac-icam.com') || trimmed.endsWith('icam.fr');
+  }
+
   @override
   void initState() {
     super.initState();
@@ -59,6 +64,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Future<void> _register() async {
+    final email = _emailCtrl.text.trim().toLowerCase();
+
     String? residenceValue;
     if (_isOtherResidence) {
       residenceValue = _otherResidenceCtrl.text.trim();
@@ -72,10 +79,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     // Validations classiques
     if (_fullNameCtrl.text.isEmpty || _usernameCtrl.text.isEmpty ||
-        _emailCtrl.text.isEmpty || _passCtrl.text.isEmpty) {
+        email.isEmpty || _passCtrl.text.isEmpty) {
       _showMsg('Remplissez tous les champs obligatoires', isError: true);
       return;
     }
+
+    // Vérification du domaine email
+    if (!_isEmailAllowed(email)) {
+      _showMsg('Seuls les emails UCAC-ICAM (ucac-icam.com) ou ICAM (icam.fr) sont autorisés', isError: true);
+      return;
+    }
+
     if (_passCtrl.text.length < 6) {
       _showMsg('Mot de passe : minimum 6 caractères', isError: true);
       return;
@@ -84,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() => _loading = true);
     try {
       final Map<String, dynamic> userData = {
-        'email': _emailCtrl.text.trim().toLowerCase(),
+        'email': email,
         'password': _passCtrl.text,
         'username': _usernameCtrl.text.trim(),
         'full_name': _fullNameCtrl.text.trim(),
@@ -97,7 +111,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (_isOtherResidence && residenceValue != null && residenceValue.isNotEmpty) {
         if (!_residences.contains(residenceValue)) {
           setState(() {
-            _residences.add(residenceValue!); // ← correction ici (ajout de !)
+            _residences.add(residenceValue!); // ✅ Utilisation de ! pour indiquer que ce n'est pas null
           });
         }
       }
@@ -161,7 +175,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const SizedBox(height: 14),
             _field(_usernameCtrl, "Nom d'utilisateur *", Icons.alternate_email),
             const SizedBox(height: 14),
-            _field(_emailCtrl, 'Email universitaire *', Icons.email_outlined, keyboard: TextInputType.emailAddress),
+            
+            // Champ email avec message d'aide
+            TextField(
+              controller: _emailCtrl,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: 'Email universitaire *',
+                prefixIcon: const Icon(Icons.email_outlined),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: Color(0xFF9E1B22), width: 2),
+                ),
+                helperText: 'Uniquement @ucac-icam.com ou @icam.fr',
+                helperStyle: const TextStyle(fontSize: 11, color: Colors.grey),
+              ),
+            ),
             const SizedBox(height: 14),
 
             TextField(

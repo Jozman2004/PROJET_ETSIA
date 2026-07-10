@@ -1,10 +1,5 @@
-# Modèles ML — trop lourds pour GitHub (>100 MB)
-*.safetensors
-*.bin
-*.pt
-*.pth
-*.onnx
-*.h5
+# Modèles ML — gérés via Git LFS (.gitattributes)
+# *.safetensors, *.bin, *.pt, *.pth → trackés par LFS, pas ignorés
 
 
 # Secrets & credentials — NE JAMAIS committer
